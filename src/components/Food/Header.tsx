@@ -15,8 +15,12 @@ export const Header = () => {
 
     const navigate = useRouter();
 
+    console.log('name---', name);
+    
     useEffect(() => {
-        const storedName = localStorage.getItem('Name');
+        const storedName = localStorage.getItem('name');
+        console.log(storedName);
+        
         setName(storedName ?? '');
 
         const handleScroll = () => {
@@ -73,6 +77,12 @@ export const Header = () => {
                             </Link>
                             <Link className='py-1 px-1 rounded-md hover:bg-gray-600 hover:text-white' href='/admin-dashboard'>
                                 Dashboard
+                            </Link>
+                            <Link className='py-1 px-1 rounded-md hover:bg-gray-600 hover:text-white' href='/login'>
+                                Login
+                            </Link>
+                            <Link className='py-1 px-1 rounded-md hover:bg-gray-600 hover:text-white' href='/create-admin'>
+                                Create Admin
                             </Link>
                             <Link className='py-1 px-1 rounded-md hover:bg-gray-600 hover:text-white' href='/login-admin'>
                                 Login Admin

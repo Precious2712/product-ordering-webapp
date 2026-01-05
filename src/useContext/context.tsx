@@ -8,7 +8,7 @@ import {
     useState,
     ReactNode
 } from "react";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
 import { CartItem } from "@/data/carts";
@@ -220,7 +220,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
 
     useEffect(() => {
         fetchPayments();
-    }, []);
+    }, [payments]);
 
     return (
         <AppContext.Provider

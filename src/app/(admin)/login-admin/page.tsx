@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { toast } from 'react-toastify';
+import { toast } from "sonner";
 import { useRouter } from 'next/navigation';
 
 import {
@@ -14,8 +14,9 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
-const API_URL = 'http://localhost:5000/api/v1/log-admin';
+const API_URL = 'https://foodorder-api-29b9.onrender.com/api/v1/log-admin';
 
 
 class Snowflake {
@@ -75,7 +76,7 @@ export default function AdminLoginPage() {
 
     const [loading, setLoading] = useState<boolean>(false);
 
-    
+
     useEffect(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;
@@ -114,7 +115,7 @@ export default function AdminLoginPage() {
         };
     }, []);
 
-    
+
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
@@ -148,13 +149,13 @@ export default function AdminLoginPage() {
 
     return (
         <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-linear-to-br from-slate-900 via-indigo-900 to-slate-900">
-           
+
             <canvas
                 ref={canvasRef}
                 className="absolute inset-0 w-full h-full pointer-events-none"
             />
 
-           
+
             <Card className="relative z-10 w-full max-w-md bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl">
                 <CardHeader>
                     <CardTitle className="text-center text-2xl font-bold text-white">
@@ -195,6 +196,9 @@ export default function AdminLoginPage() {
                             {loading ? 'Logging in...' : 'Login'}
                         </Button>
                     </form>
+                    <Link className='text-center' href='/create-admin'>
+                        <span>Click to create admin account</span>
+                    </Link>
                 </CardContent>
             </Card>
         </div>

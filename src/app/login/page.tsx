@@ -4,7 +4,7 @@ import axios, { isAxiosError } from 'axios';
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { toast } from 'react-toastify';
+import { toast } from "sonner";
 
 class Snowflake {
     canvas: HTMLCanvasElement;
@@ -128,7 +128,7 @@ export default function LoginPage() {
                 localStorage.setItem('name', res.data.name);
 
                 toast.success(res.data.message || 'Login successful');
-                router.push('/');
+                router.push('/home');
             } else {
                 toast.error('Invalid credentials');
             }
@@ -180,7 +180,7 @@ export default function LoginPage() {
 
                 <button
                     type="submit"
-                    className="w-full bg-blue-600 py-3 rounded text-white"
+                    className="w-full bg-blue-600 py-3 rounded text-white cursor-pointer font-sans"
                 >
                     {loading ? 'Loading...' : 'Sign In'}
                 </button>

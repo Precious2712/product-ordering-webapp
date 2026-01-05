@@ -34,7 +34,7 @@ export function FoodCard({ name, price, image }: FoodCardProps) {
 
         <button
           onClick={() => handleOrderItem(name, price, image)}
-          className="w-full py-3 px-4 flex items-center justify-center bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-50 dark:hover:bg-zinc-200 text-zinc-50 dark:text-zinc-900 transition-colors rounded-md font-medium"
+          className="cursor-pointer w-full py-3 px-4 flex items-center justify-center bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-50 dark:hover:bg-zinc-200 text-zinc-50 dark:text-zinc-900 transition-colors rounded-md font-medium"
         >
           <ShoppingCart className="mr-2 h-5 w-5" />
           Buy

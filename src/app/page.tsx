@@ -4,7 +4,7 @@ import axios, { AxiosError } from 'axios';
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { toast } from 'react-toastify';
+import { toast } from "sonner";
 
 interface SignupValues {
   name: string;
@@ -289,7 +289,7 @@ export default function AuthPage() {
 
           <button
             type="submit"
-            className="w-full bg-linear-to-r from-emerald-600 to-cyan-500 text-white py-3 rounded-lg font-medium hover:from-emerald-700 hover:to-cyan-600 transition-all duration-200 transform hover:-translate-y-0.5 shadow-lg hover:shadow-emerald-500/30"
+            className="cursor-pointer w-full bg-linear-to-r from-emerald-600 to-cyan-500 text-white py-3 rounded-lg font-medium hover:from-emerald-700 hover:to-cyan-600 transition-all duration-200 transform hover:-translate-y-0.5 shadow-lg hover:shadow-emerald-500/30"
           >
             {loading ? 'Loading' : 'Create Account'}
           </button>

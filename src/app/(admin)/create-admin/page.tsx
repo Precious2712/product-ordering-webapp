@@ -14,7 +14,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 
-const API_URL = 'http://localhost:5000/api/v1/create-admin';
+const API_URL = 'https://foodorder-api-29b9.onrender.com/api/v1/create-admin';
 
 class Snowflake {
   canvas: HTMLCanvasElement;
