@@ -127,12 +127,12 @@ export const AppProvider = ({ children }: AppProviderProps) => {
 
 
     const increaseQty = async (id: string, quantity: number): Promise<void> => {
+        const token = localStorage.getItem("token");
+        const newQuantity = quantity + 1;
         try {
-            const token = localStorage.getItem("token");
-
             await axios.put(
-                `https://foodorder-api-29b9.onrender.com/api/v1/increase/${id}`,
-                {},
+                `https://foodorder-api-29b9.onrender.com/api/v1/cart/${id}/quantity`,
+                { quantity: newQuantity },
                 {
                     headers: { Authorization: `Bearer ${token}` },
                 }
@@ -146,12 +146,12 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     };
 
     const decreaseQty = async (id: string, quantity: number): Promise<void> => {
+        const token = localStorage.getItem("token");
+        const newQuantity = quantity - 1;
         try {
-            const token = localStorage.getItem("token");
-
             await axios.put(
-                `https://foodorder-api-29b9.onrender.com/api/v1/decrease/${id}`,
-                {},
+                `https://foodorder-api-29b9.onrender.com/api/v1/cart/${id}/quantity`,
+                { quantity: newQuantity },
                 {
                     headers: { Authorization: `Bearer ${token}` },
                 }
