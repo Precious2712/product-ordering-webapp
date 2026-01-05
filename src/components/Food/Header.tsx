@@ -5,6 +5,7 @@ import { EllipsisVertical, ShoppingCart } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { toast } from 'sonner';
 
 export const Header = () => {
     const [name, setName] = useState<string>('');
@@ -36,6 +37,7 @@ export const Header = () => {
         localStorage.removeItem('Name');
         localStorage.removeItem('userId');
         localStorage.removeItem('payment_reference')
+        toast.success(`User successfully log out`);
         navigate.push('/');
     };
 

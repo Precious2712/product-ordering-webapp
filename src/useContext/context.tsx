@@ -168,11 +168,6 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     const fetchPayments = async (): Promise<void> => {
         const token = localStorage.getItem("adminToken");
 
-        if (!token) {
-            router.push("/home");
-            return;
-        }
-
         try {
             setLoading(true);
             const res = await axios.get<PaymentsResponse>(
@@ -182,13 +177,15 @@ export const AppProvider = ({ children }: AppProviderProps) => {
                 }
             );
             setPayments(res.data.userPayment);
-            // router.push("/home");
         } catch (error) {
+            console.log('admin-dashboard error', error);
+            
             let err = 'An error has occurred';
             if (isAxiosError(error)) {
                 err = error.response?.data.message
             }
             toast.error(err || "Failed to fetch payments");
+            router.push("/home");
         } finally {
             setLoading(false);
         }
@@ -218,9 +215,6 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         cart();
     }, []);
 
-    useEffect(() => {
-        fetchPayments();
-    }, [payments]);
 
     return (
         <AppContext.Provider

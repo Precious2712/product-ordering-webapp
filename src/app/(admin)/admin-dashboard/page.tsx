@@ -27,6 +27,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PaymentStatus, Payment } from "@/data/payment";
 import { useAppContext } from "@/useContext/context";
+import { toast } from "sonner";
 
 export default function AdminPaymentsTable() {
     const navigate = useRouter();
@@ -58,6 +59,19 @@ export default function AdminPaymentsTable() {
         return matchesSearch && matchesStatus;
     });
 
+    useEffect(() => {
+        const token = localStorage.getItem("adminToken");
+
+        if (!token) {
+            toast.error(`Authorized! Only admin have access to the page`);
+            navigate.replace("/home");
+            return;
+        }
+
+        fetchPayments();
+    }, []);
+
+
     if (loading) {
         return (
             <div className="min-h-[60vh] flex flex-col items-center justify-center">
@@ -68,17 +82,6 @@ export default function AdminPaymentsTable() {
             </div>
         );
     }
-
-    // useEffect(() => {
-    //     const adminToken = localStorage.getItem("adminToken");
-
-    //     if (!adminToken) {
-    //         navigate.replace("/admin-login");
-    //         return;
-    //     }
-
-    //     fetchPayments();
-    // }, [navigate, fetchPayments]);
 
     return (
         <div className="min-h-screen bg-linear-to-br from-gray-900 via-gray-800 to-gray-900 p-4 md:p-6">
