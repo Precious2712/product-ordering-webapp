@@ -218,11 +218,13 @@ export const AppProvider = ({ children }: AppProviderProps) => {
             toast.error('Authorized! Token missing. Login or Signup');
         }
         try {
-            const res = await axios.delete(`https://foodorder-api-29b9.onrender.com/api/v1/delete-item${id}`, {
+            const res = await axios.delete(`https://foodorder-api-29b9.onrender.com/api/v1/delete-item/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             });
+            console.log('res-data', res.data);
+            
             if (res.data) {
                 toast.success(`Item removed from cart`);
             }
