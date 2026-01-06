@@ -1,15 +1,17 @@
 'use client';
 
 import { Modal } from "@/components/Food/Modal";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Header } from "@/components/Food/Header";
 import { useAppContext } from "@/useContext/context";
 import { ScrollLockGallery } from "@/components/Food/screen-lock-gallary";
 import { FoodCard } from "@/components/Food/food-card";
 import { food } from "@/data/food-items";
+import { EmailModal } from "@/components/Food/email-modal";
 
 export default function Home() {
     const { open, setOpen, cartItem, amount } = useAppContext();
+    const [sendEmail, setSendEmail] = useState(true);
 
     const menuRef = useRef<HTMLDivElement | null>(null);
 
@@ -77,6 +79,11 @@ export default function Home() {
                     grandTotal={amount}
                 />
             )}
+
+            {sendEmail && (
+                <EmailModal onClose={() => setSendEmail(false)} />
+            )}
+
         </div>
     );
 }

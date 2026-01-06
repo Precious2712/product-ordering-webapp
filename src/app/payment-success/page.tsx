@@ -17,7 +17,7 @@ export const PaymentSuccess = () => {
 
     return (
         <div className="min-h-screen flex items-center justify-center">
-            <div className="text-center">
+            <div className="text-center shadow-md">
                 <h2 className="text-xl font-semibold">Payment received 🎉</h2>
                 <p className="text-gray-500 mt-2">
                     We are confirming your payment. Redirecting…

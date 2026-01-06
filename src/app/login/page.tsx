@@ -154,7 +154,7 @@ export default function LoginPage() {
 
             <form
                 onSubmit={handleSubmitForm}
-                className="relative z-10 w-full max-w-md bg-slate-800 p-8 rounded-xl space-y-6"
+                className="relative z-10 w-[90%] max-w-md bg-slate-800 p-8 rounded-xl space-y-6"
             >
                 <h2 className="text-2xl font-bold text-center text-white">
                     Welcome Back

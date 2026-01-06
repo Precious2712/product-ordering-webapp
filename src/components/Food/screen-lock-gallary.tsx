@@ -62,7 +62,7 @@ export function ScrollLockGallery() {
     return (
         <section
             ref={containerRef}
-            className="relative h-[50vh] w-full sm:h-[70vh] lg:h-screen"
+            className="relative h-[25vh] w-full sm:h-[60vh] md:h-[30vh] lg:h-[75vh]"
         >
             <div className="sticky top-0 h-screen w-full bg-zinc-950 flex items-center justify-center overflow-hidden">
                 {currentIndex < galleryImages.length - 1 && (
