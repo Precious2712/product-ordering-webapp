@@ -34,6 +34,7 @@ interface AppContextType {
     loading: boolean;
     fetchPayments: () => Promise<void>;
     deletePayment: (id: string) => Promise<void>;
+    handleDeleteItem: (id: string) => void;
 }
 
 
@@ -179,7 +180,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
             setPayments(res.data.userPayment);
         } catch (error) {
             console.log('admin-dashboard error', error);
-            
+
             let err = 'An error has occurred';
             if (isAxiosError(error)) {
                 err = error.response?.data.message
@@ -210,6 +211,32 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         }
     };
 
+    const handleDeleteItem = async (id: string) => {
+        toast.success(id);
+        const token = localStorage.getItem("token");
+        if (!token) {
+            toast.error('Authorized! Token missing. Login or Signup');
+        }
+        try {
+            const res = await axios.delete(`https://foodorder-api-29b9.onrender.com/api/v1/delete-item${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            if (res.data) {
+                toast.success(`Item removed from cart`);
+            }
+        } catch (error) {
+            console.log('admin-dashboard error', error);
+
+            let err = 'An error has occurred';
+            if (isAxiosError(error)) {
+                err = error.response?.data.message
+            }
+            toast.error(err || "Error");
+        }
+    }
+
 
     useEffect(() => {
         cart();
@@ -230,7 +257,8 @@ export const AppProvider = ({ children }: AppProviderProps) => {
                 increaseQty,
                 decreaseQty,
                 deletePayment,
-                fetchPayments
+                fetchPayments,
+                handleDeleteItem
             }}
         >
             {children}

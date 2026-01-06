@@ -1,5 +1,5 @@
 import { useAppContext } from "@/useContext/context";
-import { X, Minus, Plus } from "lucide-react";
+import { X, Minus, Plus, Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { CartItem } from "@/data/carts";
 
@@ -10,7 +10,7 @@ interface ModalProps {
 }
 
 export const Modal = ({ closeButton, items, grandTotal }: ModalProps) => {
-    const { increaseQty, decreaseQty } = useAppContext();
+    const { increaseQty, decreaseQty, handleDeleteItem } = useAppContext();
     const navigate = useRouter();
 
     return (
@@ -30,6 +30,7 @@ export const Modal = ({ closeButton, items, grandTotal }: ModalProps) => {
                                 alt={item.itemName}
                                 className="w-16 h-16 rounded-lg object-cover"
                             />
+                            
 
                             <div className="flex-1">
                                 <h3 className="font-medium">{item.itemName}</h3>
@@ -57,6 +58,7 @@ export const Modal = ({ closeButton, items, grandTotal }: ModalProps) => {
                                     >
                                         <Plus size={14} />
                                     </button>
+                                    <Trash className="w-5 h-5 cursor-pointer" onClick={() => handleDeleteItem(item._id)} />
                                 </div>
                             </div>
 
