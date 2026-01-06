@@ -212,32 +212,36 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     };
 
     const handleDeleteItem = async (id: string) => {
-        toast.success(id);
         const token = localStorage.getItem("token");
-        if (!token) {
-            toast.error('Authorized! Token missing. Login or Signup');
-        }
-        try {
-            const res = await axios.delete(`https://foodorder-api-29b9.onrender.com/api/v1/delete-item/${id}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-            console.log('res-data', res.data);
-            
-            if (res.data) {
-                toast.success(`Item removed from cart`);
-            }
-        } catch (error) {
-            console.log('admin-dashboard error', error);
 
-            let err = 'An error has occurred';
-            if (isAxiosError(error)) {
-                err = error.response?.data.message
-            }
-            toast.error(err || "Error");
+        if (!token) {
+            toast.error("Unauthorized! Login or Signup");
+            return;
         }
-    }
+
+        try {
+            const res = await axios.delete(
+                `https://foodorder-api-29b9.onrender.com/api/v1/delete-item/${id}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+
+            toast.success("Item removed from cart");
+
+            await cart();
+        } catch (error) {
+            let err = "Failed to delete item";
+
+            if (isAxiosError(error)) {
+                err = error.response?.data?.message || err;
+            }
+
+            toast.error(err);
+        }
+    };
 
 
     useEffect(() => {
