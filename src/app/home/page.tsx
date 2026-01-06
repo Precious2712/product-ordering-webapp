@@ -7,7 +7,6 @@ import { useAppContext } from "@/useContext/context";
 import { ScrollLockGallery } from "@/components/Food/screen-lock-gallary";
 import { FoodCard } from "@/components/Food/food-card";
 import { food } from "@/data/food-items";
-import { EmailModal } from "@/components/Food/email-modal";
 
 export default function Home() {
     const { open, setOpen, cartItem, amount } = useAppContext();
@@ -80,9 +79,9 @@ export default function Home() {
                 />
             )}
 
-            {sendEmail && (
+            {/* {sendEmail && (
                 <EmailModal onClose={() => setSendEmail(false)} />
-            )}
+            )} */}
 
         </div>
     );

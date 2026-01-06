@@ -15,7 +15,7 @@ export const Modal = ({ closeButton, items, grandTotal }: ModalProps) => {
 
     return (
         <div className="fixed inset-0 z-50 bg-black/40 flex items-center justify-center">
-            <div className="bg-white w-[95%] max-w-lg rounded-2xl shadow-xl flex flex-col">
+            <div className="bg-white h-[50vh] w-[80%] sm:h-auto sm:max-w-lg sm:max-h-[80vh] rounded-2xl shadow-xl flex flex-col">
 
                 <div className="flex items-center justify-between px-6 py-4 border-b">
                     <h2 className="text-lg font-semibold">Your Cart</h2>
@@ -33,15 +33,15 @@ export const Modal = ({ closeButton, items, grandTotal }: ModalProps) => {
                             
 
                             <div className="flex-1">
-                                <h3 className="font-medium">{item.itemName}</h3>
-                                <p className="text-sm text-gray-500">
+                                <h3 className="font-medium text-xs">{item.itemName}</h3>
+                                <p className=" text-gray-500 text-xs">
                                     ${item.itemPrice.toFixed(2)}
                                 </p>
 
                                 <div className="flex items-center gap-2 mt-2">
                                     <button
                                         onClick={() => decreaseQty(item._id, item.quantity)}
-                                        className="p-1 border rounded hover:bg-gray-100"
+                                        className="p-1 border rounded hover:bg-gray-100 cursor-pointer"
                                     >
                                         <Minus size={14} />
                                     </button>
@@ -54,7 +54,7 @@ export const Modal = ({ closeButton, items, grandTotal }: ModalProps) => {
                                         onClick={() =>
                                             increaseQty(item._id, item.quantity)
                                         }
-                                        className="p-1 border rounded hover:bg-gray-100"
+                                        className="p-1 border rounded hover:bg-gray-100 cursor-pointer"
                                     >
                                         <Plus size={14} />
                                     </button>
@@ -63,7 +63,7 @@ export const Modal = ({ closeButton, items, grandTotal }: ModalProps) => {
                             </div>
 
                             <div className="text-right">
-                                <p className="font-semibold">
+                                <p className="font-semibold text-xs">
                                     ${item.total.toFixed(2)}
                                 </p>
                             </div>
@@ -74,7 +74,7 @@ export const Modal = ({ closeButton, items, grandTotal }: ModalProps) => {
                 <div className="border-t px-6 py-4">
                     <div className="flex justify-between mb-4">
                         <span>Grand Total</span>
-                        <span className="font-semibold">
+                        <span className="font-semibold text-xs">
                             ${grandTotal.toFixed(2)}
                         </span>
                     </div>
@@ -83,7 +83,7 @@ export const Modal = ({ closeButton, items, grandTotal }: ModalProps) => {
                         onClick={() =>
                             navigate.push("/check-out")
                         }
-                        className="w-full bg-black text-white py-3 rounded-xl"
+                        className="w-full bg-black text-white py-3 rounded-xl cursor-pointer"
                     >
                         Checkout
                     </button>
