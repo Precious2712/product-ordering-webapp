@@ -14,7 +14,7 @@ export default function Home() {
 
     const menuRef = useRef<HTMLDivElement | null>(null);
 
-    /* ---- Animate menu cards on scroll ---- */
+    
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
@@ -45,7 +45,6 @@ export default function Home() {
         <div className="min-h-screen bg-linear-to-br from-gray-900 via-gray-800 to-black">
             <Header />
 
-            {/* HERO / TAG CLOUD */}
             {showDraggableTags && (
                 <section
                     className="
@@ -56,7 +55,6 @@ export default function Home() {
                 >
                     <DraggableTags />
 
-                    {/* Soft fade so menu feels connected (Wellfound style) */}
                     <div
                         className="
               absolute bottom-0 left-0 w-full h-24
@@ -67,11 +65,10 @@ export default function Home() {
                 </section>
             )}
 
-            {/* MENU SECTION (PULLS UP CLOSER ON MOBILE) */}
             <section
                 className="
           relative
-          -mt-72 md:-mt-20 lg:mt-10
+          -mt-60 md:-mt-20 lg:mt-10
           py-16 px-4
           bg-gray-900
         "

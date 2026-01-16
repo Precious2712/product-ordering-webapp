@@ -187,7 +187,7 @@ export function DraggableTags() {
         return (
             <div className="bg-linear-to-br from-gray-900 via-gray-800 to-black px-4 py-8">
                 <h1 className="text-3xl font-bold text-center text-white mb-6">
-                    Explore Skills
+                    Explore Food
                 </h1>
 
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
