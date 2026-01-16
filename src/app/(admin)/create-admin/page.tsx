@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from 'react';
 import axios, { isAxiosError } from 'axios';
-import { toast } from 'react-toastify';
 
 import {
   Card,
@@ -13,6 +12,9 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
+import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const API_URL = 'https://foodorder-api-29b9.onrender.com/api/v1/create-admin';
 
@@ -56,20 +58,22 @@ class Snowflake {
 }
 
 interface AdminFormData {
-  fullname: string;
+  fullName: string;
   email: string;
   password: string;
 }
 
 export default function AdminSignupPage() {
   const [formData, setFormData] = useState<AdminFormData>({
-    fullname: '',
+    fullName: '',
     email: '',
     password: '',
   });
 
   const [loading, setLoading] = useState<boolean>(false);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+
+  const navigate = useRouter();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -121,16 +125,16 @@ export default function AdminSignupPage() {
   ) => {
     e.preventDefault();
 
+    console.log(formData);
+
+
     try {
       setLoading(true);
       await axios.post(API_URL, formData);
       toast.success('Admin account created successfully');
 
-      setFormData({
-        fullname: '',
-        email: '',
-        password: '',
-      });
+      navigate.push('/admin-dashboard');
+
     } catch (error) {
       let errmsg = 'An error has occur';
       if (isAxiosError(error)) {
@@ -166,9 +170,9 @@ export default function AdminSignupPage() {
             <div>
               <Label className="text-slate-200">Full Name</Label>
               <Input
-                name="fullname"
-                className='mt-2'
-                value={formData.fullname}
+                name="fullName"
+                className='mt-2 text-white '
+                value={formData.fullName}
                 onChange={handleChange}
                 placeholder="John Doe"
                 required
@@ -193,7 +197,7 @@ export default function AdminSignupPage() {
               <Input
                 name="password"
                 type="password"
-                className='mt-2'
+                className='mt-2 text-white'
                 value={formData.password}
                 onChange={handleChange}
                 required
@@ -201,12 +205,16 @@ export default function AdminSignupPage() {
             </div>
 
             <Button
-              className="w-full bg-linear-to-r from-indigo-500 to-cyan-500 hover:from-indigo-600 hover:to-cyan-600"
+              className="w-full cursor-pointer bg-linear-to-r from-indigo-500 to-cyan-500 hover:from-indigo-600 hover:to-cyan-600"
               disabled={loading}
             >
               {loading ? 'Creating...' : 'Create Admin'}
             </Button>
           </form>
+          <div className='flex justify-center mt-4'>
+            <Link className='text-white text-center' href='/login-admin'>Already have an account login</Link>
+          </div>
+
         </CardContent>
       </Card>
     </div>

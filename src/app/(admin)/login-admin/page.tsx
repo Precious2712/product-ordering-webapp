@@ -170,7 +170,7 @@ export default function AdminLoginPage() {
                             <Input
                                 name="email"
                                 type="email"
-                                className='mt-2'
+                                className='mt-2 text-white'
                                 value={formData.email}
                                 onChange={handleChange}
                                 required
@@ -182,7 +182,7 @@ export default function AdminLoginPage() {
                             <Input
                                 name="password"
                                 type="password"
-                                className='mt-2'
+                                className='mt-2 text-white'
                                 value={formData.password}
                                 onChange={handleChange}
                                 required
@@ -190,15 +190,15 @@ export default function AdminLoginPage() {
                         </div>
 
                         <Button
-                            className="w-full bg-linear-to-r from-indigo-500 to-cyan-500 hover:from-indigo-600 hover:to-cyan-600"
+                            className="w-full cursor-pointer bg-linear-to-r from-indigo-500 to-cyan-500 hover:from-indigo-600 hover:to-cyan-600"
                             disabled={loading}
                         >
                             {loading ? 'Logging in...' : 'Login'}
                         </Button>
                     </form>
-                    <Link className='text-center' href='/create-admin'>
-                        <span>Click to create admin account</span>
-                    </Link>
+                    <div className='flex justify-center mt-4'>
+                        <Link className='text-white text-center' href='/create-admin'>Don't have an account login</Link>
+                    </div>
                 </CardContent>
             </Card>
         </div>
