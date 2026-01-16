@@ -167,15 +167,15 @@ export const AppProvider = ({ children }: AppProviderProps) => {
 
 
     const fetchPayments = async (): Promise<void> => {
-        const token = localStorage.getItem("adminToken");
+        // const token = localStorage.getItem("adminToken");
 
         try {
             setLoading(true);
             const res = await axios.get<PaymentsResponse>(
                 "https://foodorder-api-29b9.onrender.com/api/v1/get-all-payment",
-                {
-                    headers: { Authorization: `Bearer ${token}` },
-                }
+                // {
+                //     headers: { Authorization: `Bearer ${token}` },
+                // }
             );
             setPayments(res.data.userPayment);
         } catch (error) {
