@@ -30,7 +30,7 @@ import { useAppContext } from "@/useContext/context";
 import { toast } from "sonner";
 
 export default function AdminPaymentsTable() {
-    // const navigate = useRouter();
+    const navigate = useRouter();
     const [searchTerm, setSearchTerm] = useState<string>("");
     const [filterStatus, setFilterStatus] = useState<"ALL" | PaymentStatus>("ALL");
     // const [adminToken, setAdminToken] = useState<string>('admin');
@@ -59,17 +59,18 @@ export default function AdminPaymentsTable() {
         return matchesSearch && matchesStatus;
     });
 
-    // useEffect(() => {
-    //     const token = localStorage.getItem("adminToken");
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        // setAdminToken(token);
 
-    //     if (!token) {
-    //         toast.error(`Authorized! Only admin have access to the page`);
-    //         navigate.replace("/home");
-    //         return;
-    //     }
+        if (!token) {
+            toast.error(`Authorized! Only admin have access to the page`);
+            navigate.replace("/home");
+            return;
+        }
 
-    //     fetchPayments();
-    // }, []);
+        fetchPayments();
+    }, []);
 
 
     if (loading) {

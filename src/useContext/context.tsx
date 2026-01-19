@@ -167,15 +167,15 @@ export const AppProvider = ({ children }: AppProviderProps) => {
 
 
     const fetchPayments = async (): Promise<void> => {
-        // const token = localStorage.getItem("adminToken");
+        const token = localStorage.getItem("token");
 
         try {
             setLoading(true);
             const res = await axios.get<PaymentsResponse>(
-                "https://foodorder-api-29b9.onrender.com/api/v1/get-all-payment",
-                // {
-                //     headers: { Authorization: `Bearer ${token}` },
-                // }
+                "https://foodorder-api-29b9.onrender.com/api/v1/dashboard-payment",
+                {
+                    headers: { Authorization: `Bearer ${token}` },
+                }
             );
             setPayments(res.data.userPayment);
         } catch (error) {
@@ -272,7 +272,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     );
 };
 
-// ===================== HOOK =====================
+
 export const useAppContext = (): AppContextType => {
     const context = useContext(AppContext);
 
